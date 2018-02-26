@@ -14,15 +14,27 @@ void init() {
     ans[0] = 0;
     used[0] = true;
     rep(i,SIZE-1) {
-        int mi = INF, ind;
+        ll mi = INF;
+        int ind;
         rep(j,SIZE) {
             if (used[j]) continue;
-            if (mi > board[i][j]) {
-                mi = board[i][j];
+            if (mi > board[ans[i]][j]) {
+                mi = board[ans[i]][j];
                 ind = j;
             }
         }
         ans[i+1] = ind;
+        used[ind] = true;
+    }
+}
+
+void output() {
+    rep(i,SIZE) {
+        if (i != SIZE-1) {
+            cout << ans[i] << " " << ans[i+1] << endl;
+        } else {
+            cout << ans[i] << " " << ans[0] << endl;
+        }
     }
 }
 
@@ -32,4 +44,5 @@ int main(){
     rep(i,SIZE) board[i][i] = 0;
     
     init();
+    output();
 }
